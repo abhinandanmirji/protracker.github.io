@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text">Task</th>
+                <th class="text">Discription</th>
+                <th class="text">Completed On</th>
+                <th class="text">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in completed_tasks %}
+                <tr>
+                    <td class="text">{{ task.task_name }}</td>
+                    <td class="text">{{ task.description }}</td>
+                    <td class="text">{{ task.completion_date }}</td>
+                    <td class="text">
+                        <form action="/mark_incomplete/{{ task.task_id }}" method="post">
+                            <button type="submit" class="btn btn-primary">Mark Incomplete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

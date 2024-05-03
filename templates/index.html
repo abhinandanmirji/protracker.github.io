@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <h2>Welcome, {{ user[0].first_name }} {{ user[0].last_name }}!</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text">Task</th>
+                <th class="text">Discription</th>
+                <th class="text">Due</th>
+                <th class="text">Stage</th>
+                <th class="text">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td class="text">{{ task.task_name }}</td>
+                    <td class="text">{{ task.description }}</td>
+                    <td class="text">{{ task.due_date }}</td>
+                    <td class="text">{{ task.stage_name }}</td>
+                    <td class="text">
+                        {% if task.stage_name == "In Progress" %}
+                            <form action="/mark_complete/{{ task.task_id }}" method="post">
+                                <button type="submit" class="btn btn-success">Mark Completed</button>
+                            </form>
+                        {% elif task.stage_name == "Not Started" %}
+                            <form action="/mark_in_progress/{{ task.task_id }}" method="post">
+                                <button type="submit" class="btn btn-warning">Mark In Progress</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

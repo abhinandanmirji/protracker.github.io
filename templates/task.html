@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create a New Task
+{% endblock %}
+
+{% block main %}
+    <h2>Create a new task! </p>
+    </h2>
+
+    <form action="/task" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="task_name" id="task_name" placeholder="Title" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="description" id="description" placeholder="Description" type="text">
+        </div>
+
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Enter Username to assign" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="project_id" name="project_id" placeholder="Project Id" type="text">
+        </div>
+        <div class="mb-3">
+            <label for="due_date">Due Date:</label>
+            <input type="date" class="form-control mx-auto w-auto" id="due_date" name="due_date">
+        </div>
+
+        <form action="/task" method="post">
+            <button type="submit" class="btn btn-warning">Create Task</button>
+        </form>
+    </form>
+
+{% endblock %}
